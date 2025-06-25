@@ -1,0 +1,82 @@
+procedure dot_product(v1: array of real, v2: array of real, n: integer, var ps: real)
+var
+   i: integer
+begin
+   ps := 0
+   for i := 0 to n - 1 do
+      ps := ps + v1[i] * v2[i]
+   end for
+end
+
+algorithm check_orthogonality
+var
+   i, j, n: integer
+   v1, v2: array of real
+   ps: real
+begin
+   write("enter the size of vectors:")
+   read(n)
+
+   for i := 1 to n do
+      write("enter vector v1 of pair ", i)
+      for j := 0 to n - 1 do
+         read(v1[j])
+      end for
+
+      write("enter vector v2 of pair ", i)
+      for j := 0 to n - 1 do
+         read(v2[j])
+      end for
+
+      dot_product(v1, v2, n, ps)
+
+      if ps = 0 then
+         write("vectors ", i, " are orthogonal")
+      else
+         write("vectors ", i, " are not orthogonal")
+      end if
+   end for
+end
+// function time :
+
+function dot_product(v1: array of real, v2: array of real, n: integer): real
+var
+   i: integer
+   ps: real
+begin
+   ps := 0
+   for i := 0 to n - 1 do
+      ps := ps + v1[i] * v2[i]
+   end for
+   return ps
+end
+
+algorithm check_orthogonality_func
+var
+   i, j, n: integer
+   v1, v2: array of real
+   result: real
+begin
+   write("enter the size of vectors:")
+   read(n)
+
+   for i := 1 to n do
+      write("enter vector v1 of pair ", i)
+      for j := 0 to n - 1 do
+         read(v1[j])
+      end for
+
+      write("enter vector v2 of pair ", i)
+      for j := 0 to n - 1 do
+         read(v2[j])
+      end for
+
+      result := dot_product(v1, v2, n)
+
+      if result = 0 then
+         write("vectors ", i, " are orthogonal")
+      else
+         write("vectors ", i, " are not orthogonal")
+      end if
+   end for
+end
