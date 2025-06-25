@@ -1,45 +1,50 @@
-algo sum_distinct 
+ALGORITHM sum_distinct
+VAR
+    set1 : ARRAY_OF INTEGER[100]; // Tableau contenant les entiers du premier ensemble (max 100 éléments)
+    set2 : ARRAY_OF INTEGER[100]; // Tableau contenant les entiers du deuxième ensemble (max 100 éléments)
+    n1, n2, i, j, s : INTEGER;     // n1 et n2 : tailles des tableaux, i et j : indices de boucle, s : somme
+    a : INTEGER;                  // Variable temporaire pour lire les entrées
+BEGIN
+    s := 0; // Initialiser la somme à zéro
 
-begin 
-var 
+    write("Donner le nombre de cases de set1 : ");
+    read(n1);                                            // Lire la taille de set1
 
+    Write("Donner le nombre de cases de set2 : ");
+    Read(n2);                                           // Lire la taille de set2
 
-s= 0 ;
-   set1 table integer ;  := []
-   set2 table integer ;  := []
+    // Remplir set1 avec les valeurs entrées par l'utilisateur
 
-begin
+    for i from 0 to n1 - 1 do
+        Write("Donner l'élément de set1 à la position ", i, " : ");
+        Read(a);
+        set1[i] := a;
+    END_FOR
 
-write("donner le nombre de case de set1 ")
-read (n1)
+    // Remplir set2 avec les valeurs entrées par l'utilisateur
 
-write("donner le nombre de case de set 2 ")
-read (n2)
+    for  i FROM 0 TO n2 - 1 DO
+        Write("Donner l'élément de set2 à la position ", i, " : ");
+        Read(a);
+        set2[i] := a;
+    END_FOR
 
-for i from 0 to n1 step 1 do
-write("donner lelement de set 1", i  ) 
-read (a)
-set1.append(a)
-end for
+    // Parcourir tous les éléments de set1
 
-for i from 0 to n2 step 1 do
-write("donner lelement de set 2", i  ) 
-read (a)
-set2.append(a)
-end for
+    for i from 0 to n1 - 1 do
+        // Vérifier si set1[i] n'existe pas dans set2
+        found := false;
+        for j from 0 to n2 - 1 do
+            if set1[i] = set2[j] then
+                found := true;
+                break;
+            end_if
+        end_for
 
-if n1>n2 
-    for i from 0 to n1 step 1 do
-        if set1[i] not in set2
-            s := s + set1[i]
-        end if 
-    end for
-else 
-    for i from 0 to n1 step 1 do
-        if set1[i] not in set2
-            s := s + set1[i]
-        end if
-    end for
-end if 
+        if not found then
+            s := s + set1[i]; // Ajouter à la somme si distinct
+        end_if
+    end_for
 
-return s 
+    Write("La somme des éléments distincts de set1 est : ", s);
+END
