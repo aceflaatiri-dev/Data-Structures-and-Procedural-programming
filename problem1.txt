@@ -1,0 +1,45 @@
+algo sum_distinct 
+
+begin 
+var 
+
+
+s= 0 ;
+   set1 table integer ;  := []
+   set2 table integer ;  := []
+
+begin
+
+write("donner le nombre de case de set1 ")
+read (n1)
+
+write("donner le nombre de case de set 2 ")
+read (n2)
+
+for i from 0 to n1 step 1 do
+write("donner lelement de set 1", i  ) 
+read (a)
+set1.append(a)
+end for
+
+for i from 0 to n2 step 1 do
+write("donner lelement de set 2", i  ) 
+read (a)
+set2.append(a)
+end for
+
+if n1>n2 
+    for i from 0 to n1 step 1 do
+        if set1[i] not in set2
+            s := s + set1[i]
+        end if 
+    end for
+else 
+    for i from 0 to n1 step 1 do
+        if set1[i] not in set2
+            s := s + set1[i]
+        end if
+    end for
+end if 
+
+return s 
